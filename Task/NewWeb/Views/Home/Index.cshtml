@@ -1,0 +1,45 @@
+﻿<h2>TaskList in Web API</h2>
+
+<script>
+    //Get value of selected items
+    function Selectstate() {
+        var Itemselected = [];
+
+        $("[id*=CheckBoxList1] input:checked").each(function () {
+
+            Itemselected.push($(this).val());
+
+        });
+
+        if (Itemselected.length > 0) {
+
+            alert("Task Completed: " + Itemselected);
+
+        } else {
+
+            alert("No task selected:");
+
+        }
+
+    }
+</script>
+
+<table id="CheckBoxList1">
+
+    @foreach (var item in ViewBag.DataSource)
+
+    {
+        string controlId = "CheckBoxList1_" + @item.Key;
+
+        <tr>
+           
+            <td>
+                <input id="@controlId" type="checkbox" value="@item.Key" />@item.Value
+
+            </td>
+
+        </tr>
+
+    }
+</table>
+<input type="button" value="submit" id="demo" onclick="javascript: Selectstate();" />
